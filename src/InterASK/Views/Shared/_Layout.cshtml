@@ -1,16 +1,37 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	@Styles.Render("~/Content/css")
+	@Styles.Render("~/Content/bootstrap.min.css")
+	@Styles.Render("~/Content/bootstrap-responsive.min.css")
+	@Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @RenderBody()
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a class="brand" href="#">InterASK</a>
+			<ul class="nav">
+				@RenderSection("HeaderNav", required: false)
+				<li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+				<li>@Html.ActionLink("Speaker", "Index", "Speaker")</li>
+				<li>@Html.ActionLink("Presenter", "Index", "Presenter")</li>
+			</ul>
+		</div>
+	</div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
+	<div class="container-fluid">
+		<div class="row-fluid">
+			@RenderSection("LeftColumn", required: false)
+			@RenderBody()
+		</div>
+	</div>
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/scripts/bootstrap.min.js")
+	@Scripts.Render("~/scripts/site.js")
+	@RenderSection("scripts", required: false)
 </body>
 </html>

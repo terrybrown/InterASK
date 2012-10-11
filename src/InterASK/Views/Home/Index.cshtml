@@ -1,0 +1,30 @@
+﻿@model dynamic
+
+@{
+	ViewBag.Title = "InterASK - Ask a question";
+}
+
+@section LeftColumn
+{
+	<div class="span4">
+		<div class="well">
+			<h3>Current Questions</h3>
+
+		</div>
+	</div>
+
+}
+
+<div class="span8">
+	<h2>Question Asking</h2>
+
+	<div class="row-fluid">
+		<form>
+			<label>Question</label>
+			<textarea rows="6" placeholder="Type something…" class="span12"></textarea>
+			<div class="pull-right">
+				<button type="submit" class="btn" rel="tooltip" data-placement="bottom" data-original-title="send question"><i class="icon-bullhorn has-text"></i><b>send</b></button>
+			</div>
+		</form>
+	</div>
+</div>
