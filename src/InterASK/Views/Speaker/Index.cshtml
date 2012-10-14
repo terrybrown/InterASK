@@ -5,3 +5,23 @@
 }
 
 <h2>Speaker</h2>
+
+<ul id="messages"></ul>
+
+@section scripts
+{
+	<script>
+		$(function () {
+			var speaker = $.connection.speaker;
+
+			speaker.addUnverifiedQuestion = function (message, client) {
+				alert('we seem to be here');
+				$('#messages').append('<li>' + message + ' - ' + client + '</li>');
+			};
+		
+			$.connection.hub.start().fail(function (e) {
+				alert('borked' + e);
+			});
+		});
+	</script>
+}

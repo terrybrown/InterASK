@@ -19,12 +19,42 @@
 	<h2>Question Asking</h2>
 
 	<div class="row-fluid">
-		<form>
+		<form method="POST">
 			<label>Question</label>
-			<textarea rows="6" placeholder="Type something…" class="span12"></textarea>
+			<textarea rows="6" id="question" placeholder="Type something…" class="span12"></textarea>
 			<div class="pull-right">
-				<button type="submit" class="btn" rel="tooltip" data-placement="bottom" data-original-title="send question"><i class="icon-bullhorn has-text"></i><b>send</b></button>
+				<button id="send-question" class="btn" rel="tooltip" data-placement="bottom" data-original-title="send question"><i class="icon-bullhorn has-text"></i><b>send</b></button>
 			</div>
 		</form>
 	</div>
+	
+	<ul id="messages"></ul>
 </div>
+
+@section scripts
+{
+	<script>
+		$(function () {
+			var question = $.connection.question;
+
+			question.addUnverifiedQuestion = function (message, client) {
+				$('#messages').append('<li>' + message + ' - ' + client + '</li>');
+			};
+			question.thanks = function () {
+				alert('and indeed here');
+				$('messages').append('<li>Cracking cheese grommit</li>');
+			};
+
+			$('#send-question').click(function (e) {
+				question.askQuestion($('#question').val());
+				e.preventDefault();
+				return false;
+			});
+
+			$.connection.hub.start().fail(function (e) {
+				alert('borked' + e);
+			});
+
+		});
+	</script>
+}

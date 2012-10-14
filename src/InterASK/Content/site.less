@@ -1,3 +1,17 @@
-﻿body {
-	background-color: #fff;
+﻿@color: #4D926F;
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  box-shadow:         @style @c;
+  -webkit-box-shadow: @style @c;
+  -moz-box-shadow:    @style @c;
+}
+
+body {
+	background-color: @color;
+	.box-shadow(0 0 5px, #f3f3f3);
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 12px;
 }
