@@ -10,6 +10,7 @@ namespace InterASK.Hubs
 	//[HubName("question")]
 	public class Question : Hub, IDisconnect, IConnected
 	{
+
 		public void AskQuestion(string question)
 		{
 			Clients.addUnverifiedQuestion(question, Context.ConnectionId);				// works
@@ -17,6 +18,10 @@ namespace InterASK.Hubs
 			Clients["Question"].thanks();												// nor does this
 		}
 
+		public Task JoinGroup()
+		{
+			return Groups.Add(Context.ConnectionId, "Questions");
+		}
 		public Task Disconnect()
 		{
 			return Groups.Remove(Context.ConnectionId, "Questions");

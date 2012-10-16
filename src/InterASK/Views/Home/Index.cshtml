@@ -53,6 +53,8 @@
 
 			$.connection.hub.start().fail(function (e) {
 				alert('borked' + e);
+			}).complete(function () {
+				question.joinGroup();
 			});
 
 		});
